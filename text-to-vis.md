@@ -8,6 +8,25 @@ Text-to-Vis refers to the task of taking a human language request for visualisat
 
 ## Datasets
 
+#### Plot Coder [(Chen et al., 2021)](https://aclanthology.org/2021.acl-long.169/)
+- How it was created: 
+    1. Select notebooks from the Juice dataset on GitHub that contain visualization code (e.g., matplotlib, pandas, seaborn).
+    2. Identify lines of code that invoke plotting functions (e.g., plt.plot(), sns.barplot()).
+    3. Use the plotting code line as the output, and treat the preceding lines as input (including code context and any natural language requests found in the notebook).
+- Input: Python Code Context, Natural Language Request
+- Output: Python code
+- Dataset statistics:
+    - Train/Validation/Test Split: 38971/884/942
+    - Total utterances: N/A
+    - Plotting data: N/A
+    - Visualisations created: N/A
+- How to evaluate:
+    - Chart type accuracy: use the same plotting function?
+    - Exact match of data fields
+- Website: https://github.com/jungyhuk/plotcoder
+- Advantages: Provides a large collection of real-world text-to-vis examples from public notebooks.
+- Limitations: Licensing of GitHub notebooks is unclear, and the dataset may overlap with data used to train large language models.
+
 #### NLV Corpus [(Srinivasan et al., 2021)](https://dl.acm.org/doi/10.1145/3411764.3445400)
 - How it was created: 
     1. Choose 3 CSV datasets: Cars, Movies, Superstore
@@ -28,7 +47,8 @@ Text-to-Vis refers to the task of taking a human language request for visualisat
 - Advantages: 100% manually created
 - Limitations: small, no diversity in chart types and plotting data.
 
-#### Plot Coder
+
+
 #### ChartDialogs
 #### nvBench
 
