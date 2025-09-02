@@ -6,7 +6,19 @@
 
 Text-to-Vis refers to the task of taking a human language request for visualisation, data files (optional), and code context (optional), then generating code to produce the corresponding visualisation, as described in Figure above.
 
+
+
 ## Datasets
+| Year | Dataset         | Input Type                        | Output Type                | # Utterances | Chart Types |
+|------|-----------------|-----------------------------------|----------------------------|--------------|-------------|
+| 2021 | Plot Coder      | Python code context, NL request   | Python code                | N/A          | N/A         |
+| 2021 | NLV Corpus      | CSV file, NL request              | Vega-lite JSON spec        | 893          | 10          |
+| 2022 | ChartDialogs    | Dialog context, NL request        | Slot values                | 15,754       | 12          |
+| N/A  | nvBench         | NL request, data                  | Visualization spec         | N/A          | N/A         |
+|      | (Add more here) |                                   |                            |              |             |
+
+
+## Detail
 
 #### Plot Coder [(Chen et al., 2021)](https://aclanthology.org/2021.acl-long.169/)
 - How it was created: 
@@ -20,6 +32,7 @@ Text-to-Vis refers to the task of taking a human language request for visualisat
     - Total utterances: N/A
     - Plotting data: N/A
     - Visualisations created: N/A
+    - #. Chart types: N/A
 - How to evaluate:
     - Chart type accuracy: use the same plotting function?
     - Exact match of data fields
@@ -38,6 +51,7 @@ Text-to-Vis refers to the task of taking a human language request for visualisat
     - Total utterances: 893
     - Plotting data: 3 CSV files (Cars, Movies, Superstore)
     - Visualisations created: 30
+    - #. Chart types: 10
 - Input: Natural Language Request (NL request), CSV file
 - Output: Vega-lite JSON specification
 - How to evaluate:
@@ -48,8 +62,24 @@ Text-to-Vis refers to the task of taking a human language request for visualisat
 - Limitations: small, no diversity in chart types and plotting data.
 
 
-
 #### ChartDialogs
+- How it was created: 
+    1. Generate random data points and charts
+    2. Use slot-filling approach to manually annotate. Human interact with system (another human) to create dialogs aiming to change slots (around 53 chart attributes, such as bar_width, reverse_x_axis, log_scale_x_axis). A pre-defined Python program was used to generate the changes.
+- Dataset statistics:
+    - Train/Validation/Test Split: 11,903/1,562/1,481
+    - Total utterances: 15,754
+    - Plotting data: randomly generated
+    - Visualisations created: 15,754
+    - #. Chart types: 12
+- Input: Contextual dialogs, a new request for changing chart attributes
+- Output: Slots (e.g. bar_width=12, reverse_x_axis=True, log_scale_x_axis=False)
+- How to evaluate:
+    - Accuracy of slot filling
+- Website: https://github.com/sythello/ChartDialog
+- Advantages: 100% manually created
+- Limitations: Too easy for LLMs (e.g. ChatGPT)
+
 #### nvBench
 
 
